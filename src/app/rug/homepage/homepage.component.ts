@@ -57,11 +57,14 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
 
   setsock() {
-     this.socket = new WebSocket('ws://' + window.location.host + '/stocks/');
-
+     console.log("setsock 8000:"+ window.location.host);
+//     this.socket = new WebSocket('ws://' + window.location.host + '/stocks/');
+     this.socket = new WebSocket('ws://127.0.0.1:8000/stocks/');
+    console.log("setsock 2 ");
     this.socket.onopen = () => {
       console.log('WebSockets connection created.');
     };
+    console.log("setsock 3 ");    
 
     this.socket.onmessage = (event) => {
       //  var data = JSON.parse(event.data);
@@ -73,6 +76,14 @@ export class HomepageComponent implements OnInit, OnDestroy {
       this.socket.onopen(null);
     }
   }
+
+ start1() {
+  this.socket.send('start');
+ }
+
+ stop1() {
+  this.socket.send('stop');
+ }
 
   // subcribe return the target object
   setClockCallback(date: Date) {
