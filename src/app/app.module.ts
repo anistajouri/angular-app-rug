@@ -1,18 +1,32 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { RugModule } from './rug/rug.module';
 
 
 import { AppComponent } from './app.component';
 
 
+import { CommonModule } from '@angular/common';
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
-    BrowserModule
+    RugModule,
+    CommonModule,
+/*    AlarmClockComponent,
+    CollapseModule.forRoot(),
+    ProgressbarModule.forRoot(),
+    AlertModule.forRoot(),
+    TimepickerModule.forRoot(),*/
+    BrowserModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
