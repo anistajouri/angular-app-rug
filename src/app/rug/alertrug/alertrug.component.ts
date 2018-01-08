@@ -1,10 +1,11 @@
 import { AlarmClock } from '../alarm-clock/alarm-clock';
+import { AlertRug } from './alertrug';
 import { AlarmClockService } from './../alarm-clock/alarm-clock.service';
 //import { DateFormatter } from '@angular/common/src/pipes/intl';
 import { Player } from './../player/player';
 import { PlayerService } from '../player/player.service';
 import { MP3Playback } from './../mp3-playback/mp3-playback';
-import { SystemDateService } from './systemdate.service';
+import { SystemDateService } from '../homepage/systemdate.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {SystemDate} from '../../system-date';
 import { MP3PlaybackService } from '../mp3-playback/mp3-playback.service';
@@ -12,11 +13,12 @@ import { Observable, Subscription } from 'rxjs/Rx';
 
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.css']
+  selector: 'app-alertrug',
+  templateUrl: './alertrug.component.html',
+  styleUrls: ['./alertrug.component.css']
 })
-export class HomepageComponent implements OnInit, OnDestroy {
+export class AlertrugComponent implements OnInit, OnDestroy {
+  currentAlertRug: AlertRug = new AlertRug();  
   clock: Date;
   clockString: string;
   active_mp3playbacks: any[];
@@ -40,10 +42,12 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   }
 
+
+
   ngOnInit() {
     // get the backend server time and date
     this.systemDateSubscribption = this.systemDateService.getSystemDate().subscribe(this.setClockCallback.bind(this));
-    // get the active mp3 playback
+    // get the active web radio
     this.mp3PlaybackService.getAllMP3Playbacks()
       .subscribe(this.filterDefaultMP3Playback.bind(this));
     // get the player status
@@ -51,7 +55,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
     // get the list of activated Alarm
     this.alarmClockService.getAllAlarmClocks().subscribe(this.setActiveAlarmClocks.bind(this));
 
-   // this.setsock();
+ //   this.setsock();
   }
 
 
@@ -121,14 +125,48 @@ export class HomepageComponent implements OnInit, OnDestroy {
     this.playerLoaded = true;
   }
 
-  switchPlayerStatus(){
-    if (this.player.status == "on"){
-        this.player.status = "off";
+
+  switchActiveFirstPassAlert(alertrug: AlertRug){
+    if (alertrug.is_active_first_pass){
+      alertrug.is_active_first_pass = false
     }else{
-      this.player.status = "on";
+       alertrug.is_active_first_pass = true
     }
-    this.playerService.updatePlayer(this.player).subscribe(this.setPlayerStatus.bind(this));
+    // update the AlertRug
+/*    this.alarmClockService.updateAlarmClockById(alarmclock.id, alarmclock).subscribe(
+        success => {          
+          this.refreshAlarmClockList();
+        },
+        error => console.log("Error "+ error)
+      );
+*/
+
   }
+
+  switchActiveSecondPassAlert(alertrug: AlertRug){
+    if (alertrug.is_active_second_pass){
+      alertrug.is_active_second_pass = false
+    }else{
+       alertrug.is_active_second_pass = true
+    }
+  }
+
+
+  switchActivePlaybackAlert(alertrug: AlertRug){
+    if (alertrug.is_playback_active){
+      alertrug.is_playback_active = false
+    }else{
+       alertrug.is_playback_active = true
+    }
+  }
+
+  /*
+    alert_duration_Seconds: number;
+    auto_stop_seconds: number;
+    stop_seconds_hit_rug: number;
+   */
+
+
 
   setActiveAlarmClocks(alarmclocks: AlarmClock[]){
     this.active_alarms = alarmclocks.filter(

@@ -1,4 +1,4 @@
-<div *ngIf="modalConfirmDeleteIsVisible" class="modal fade show in danger" id="ModalConfirmDeleteWebRadio" role="dialog">
+<div *ngIf="modalConfirmDeleteIsVisible" class="modal fade show in danger" id="ModalConfirmDeleteMP3Playback" role="dialog">
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -10,8 +10,8 @@
         <p>{{message}}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" (click)="canceldeleteWebRadio()">Close</button>
-        <button type="button" class="btn btn-danger" (click)="confirmDeleteWebRadio(webRadioToDelete)">Delete</button>
+        <button type="button" class="btn btn-default" (click)="canceldeleteMP3Playback()">Close</button>
+        <button type="button" class="btn btn-danger" (click)="confirmDeleteMP3Playback(mp3PlaybackToDelete)">Delete</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,57 @@
+<h3>------------</h3>
+<h3>Configuration alerte</h3>
+
+<!-- 
+    <div class="switch">
+      <label for="alert">
+<a (click)="switchActiveAlert(currentAlertRug)" type="checkbox" >
+              <span class="slider {{ currentAlertRug.is_active ? 'enabled' : '' }}"></span>
+            </a>
+    
+     </label>
+    </div>
+
+ -->
+
+<!-- list current mp3 playback -->
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="col-xs-1 text-center">Alerter au premier passage</td>
+        <td class="col-md-1 text-center">
+          <a (click)="switchActiveFirstPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_first_pass ? 'success' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_active_first_pass ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-xs-1 text-center">Alerter au deuxieme passage</td>
+        <td class="col-md-1 text-center">
+          <a (click)="switchActiveSecondPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_second_pass ? 'success' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_active_second_pass ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-xs-1 text-center">Activer le son</td>
+        <td class="col-md-1 text-center">
+          <a (click)="switchActivePlaybackAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_playback_active ? 'success' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_playback_active ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div *ngIf="playerLoaded">
+  <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'on' ? 'warning' : 'default' }} btn-lg btn-block">Configurer</button>
+  <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'on' ? 'success' : 'default' }} btn-lg btn-block">statistics</button>
+  <button (click)="start1()">Start</button>
+  <button (click)="stop1()">Stop</button>  
+</div>
+

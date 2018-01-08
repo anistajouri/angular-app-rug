@@ -4,21 +4,21 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import {} from 'jasmine';
 
-import { WebRadioFormComponent } from './web-radio-form.component';
+import { MP3PlaybackFormComponent } from './mp3-playback-form.component';
 
 describe('WebRadioFormComponent', () => {
-  let component: WebRadioFormComponent;
-  let fixture: ComponentFixture<WebRadioFormComponent>;
+  let component: MP3PlaybackFormComponent;
+  let fixture: ComponentFixture<MP3PlaybackFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WebRadioFormComponent ]
+      declarations: [ MP3PlaybackFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebRadioFormComponent);
+    fixture = TestBed.createComponent(MP3PlaybackFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

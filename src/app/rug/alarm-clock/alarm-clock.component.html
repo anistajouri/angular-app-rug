@@ -22,13 +22,13 @@
         <tr *ngFor="let alarmclock of alarmclocks">
           <td class="col-md-1 text-center">{{alarmclock.name}}</td>
           <td class="col-md-2 text-center">
-            <div class="col-xs-1"><span class="text-{{ alarmclock.monday ? 'success' : 'muted' }}">Mo</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.tuesday ? 'success' : 'muted' }}">Tu</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.wednesday ? 'success' : 'muted' }}">We</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.thursday ? 'success' : 'muted' }}">Th</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.friday ? 'success' : 'muted' }}">Fr</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.monday ? 'success' : 'muted' }}">Lu</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.tuesday ? 'success' : 'muted' }}">Ma</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.wednesday ? 'success' : 'muted' }}">Me</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.thursday ? 'success' : 'muted' }}">Je</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.friday ? 'success' : 'muted' }}">Ve</span></div>
             <div class="col-xs-1"><span class="text-{{ alarmclock.saturday ? 'success' : 'muted' }}">Sa</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'success' : 'muted' }}">Su</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'success' : 'muted' }}">Di</span></div>
 
           </td>
           <td class="col-md-1 text-center">{{ alarmclock.hour < 10 ? '0' : '' }}{{alarmclock.hour}}:{{ alarmclock.minute < 10 ? '0' : '' }}{{alarmclock.minute}}</td>

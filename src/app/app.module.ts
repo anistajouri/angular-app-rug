@@ -18,11 +18,6 @@ import { CommonModule } from '@angular/common';
   imports: [
     RugModule,
     CommonModule,
-/*    AlarmClockComponent,
-    CollapseModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    AlertModule.forRoot(),
-    TimepickerModule.forRoot(),*/
     BrowserModule,
   ],
   providers: [],

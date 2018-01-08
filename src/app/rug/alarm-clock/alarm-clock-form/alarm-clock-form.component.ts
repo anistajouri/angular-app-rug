@@ -2,8 +2,8 @@ import { PopupComponent } from './../../popup/popup.component';
 import { error } from 'util';
 import { AlarmClock } from './../alarm-clock';
 import {AlarmClockService} from "../alarm-clock.service";
-import {WebRadioService} from "../../web-radios/web-radio.service";
-import {WebRadio} from "../../web-radios/web-radio";
+import {MP3PlaybackService} from "../../mp3-playback/mp3-playback.service";
+import {MP3Playback} from "../../mp3-playback/mp3-playback";
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router'
 import {Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ import {Subscription } from 'rxjs';
 export class AlarmClockFormComponent implements OnInit {
 
   newAlarmClock: AlarmClock = new AlarmClock();
-  webradios: WebRadio[];
+  MP3Playbacks: MP3Playback[];
   alarmclocks: AlarmClock[];
   existingAlarmClock: boolean = true;
   timePicker: Date;
@@ -26,16 +26,16 @@ export class AlarmClockFormComponent implements OnInit {
   // list of availlable minutes & hours
   minute_list: number[];
   hour_list: number[];
-  max_auto_stop_minute: number[];
+  max_auto_stop_second: number[];
   private subscription: Subscription;
 
-  constructor(private webRadioService: WebRadioService,
+  constructor(private MP3PlaybackService: MP3PlaybackService,
     private alarmClockService: AlarmClockService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
     this.minute_list = this.create_range(59);
     this.hour_list = this.create_range(23);
-    this.max_auto_stop_minute = this.create_range(60);
+    this.max_auto_stop_second = this.create_range(60);
 
   }
 
@@ -49,7 +49,7 @@ export class AlarmClockFormComponent implements OnInit {
           console.log("no id");
           this.existingAlarmClock = false;
           this.timePicker= new Date();
-          this.newAlarmClock.auto_stop_minutes = 0;
+          this.newAlarmClock.auto_stop_seconds = 0;
           return
         } else {
           console.log("get an id");
@@ -57,12 +57,12 @@ export class AlarmClockFormComponent implements OnInit {
           this.alarmClockService.getAlarmClockById(alarmClockId).subscribe(
             this.setExistingAlarmClock.bind(this),
             error => console.error('Error: ' + error),
-            () => console.log('Completed! Get an alarm ' + this.newAlarmClock.webradio));
+            () => console.log('Completed! Get an alarm ' + this.newAlarmClock.mp3playback));
         }
       });
 
-    // get the list of WebRadio
-    this.webRadioService.getAllWebRadios().subscribe(this.setWebRadios.bind(this))
+    // get the list of MP3Playback
+    this.MP3PlaybackService.getAllMP3Playbacks().subscribe(this.setMP3Playbacks.bind(this))
   }
 
   onSubmit() {
@@ -110,9 +110,9 @@ export class AlarmClockFormComponent implements OnInit {
     return x;
   }
 
-  setWebRadios(webradios: WebRadio[]) {
-    console.log(webradios);
-    this.webradios = webradios;
+  setMP3Playbacks(MP3Playbacks: MP3Playback[]) {
+    console.log(MP3Playbacks);
+    this.MP3Playbacks = MP3Playbacks;
   }
 
   setExistingAlarmClock(alarmClock: AlarmClock){

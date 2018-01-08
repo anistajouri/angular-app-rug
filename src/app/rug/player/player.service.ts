@@ -1,5 +1,5 @@
 import { Player } from './player';
-import { WebRadio } from './../web-radios/web-radio';
+import { MP3Playback } from './../mp3-playback/mp3-playback';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers } from '@angular/http';
 import { GlobalVariable } from './../../globals';

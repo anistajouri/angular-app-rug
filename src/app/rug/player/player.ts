@@ -1,7 +1,7 @@
 
 export class Player {
     status: string = "off";
-    webradio: number;   
+    mp3Playback: number;   
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

@@ -15,6 +15,7 @@ export class SystemDateService {
 
     // GET /alarmclocks
     getSystemDate(): Observable < Date > {
+        console.log("Hello1");
         var datejsonObservable = this.httpService.get(this.baseUrl + "/systemdate/");
         return this.dateJson(datejsonObservable);
     }

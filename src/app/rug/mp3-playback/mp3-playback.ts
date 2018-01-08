@@ -1,7 +1,7 @@
-export class WebRadio {
+export class MP3Playback {
     id: number;
     name: string = '';
-    url: string = '';
+    mp3_playback: string = '';
     is_default: boolean = false;
 
     constructor(values: Object = {}) {
