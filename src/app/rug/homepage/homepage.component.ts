@@ -19,6 +19,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 export class HomepageComponent implements OnInit, OnDestroy {
   clock: Date;
   clockString: string;
+  StateRug: string;
   active_mp3playbacks: any[];
   active_alarms: AlarmClock[];
   all_mp3playbacks: any[];
@@ -51,35 +52,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
     // get the list of activated Alarm
     this.alarmClockService.getAllAlarmClocks().subscribe(this.setActiveAlarmClocks.bind(this));
 
-   // this.setsock();
   }
-
-
-  setsock() {
-//     this.socket = new WebSocket('ws://' + window.location.host + '/stocks/');
-     this.socket = new WebSocket('ws://127.0.0.1:8000/stocks/');
-    this.socket.onopen = () => {
-      console.log('WebSockets connection created.');
-    };
-
-    this.socket.onmessage = (event) => {
-      //  var data = JSON.parse(event.data);
-      console.log("data from socket:" + event.data);
-      this.title = event.data;
-    };
-
-    if (this.socket.readyState == WebSocket.OPEN) {
-      this.socket.onopen(null);
-    }
-  }
-
- start1() {
-  this.socket.send('start');
- }
-
- stop1() {
-  this.socket.send('stop');
- }
 
   // subcribe return the target object
   setClockCallback(date: Date) {
@@ -92,7 +65,8 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   incrementDate() {
     this.clock.setSeconds(this.clock.getSeconds() + 1)
-    this.clockString = "111111111"; 
+    //this.StateRug
+    //this.clockString = "111111111"; 
     //DateFormatter.format(this.clock, 'en', 'EEEE, MMMM d, y H:mm:ss');
   }
 

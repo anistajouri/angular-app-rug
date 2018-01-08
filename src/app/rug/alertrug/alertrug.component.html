@@ -1,5 +1,4 @@
 <h3>------------</h3>
-<h3>Configuration alerte</h3>
 
 <!-- 
     <div class="switch">
@@ -12,7 +11,9 @@
     </div>
 
  -->
-
+<h3>Etat de la tapis</h3>
+<div class="well"><strong>{{ RugState }}</strong></div>
+<h3>Configuration alerte</h3>
 <!-- list current mp3 playback -->
 <div class="table-responsive">
   <table class="table">
@@ -20,24 +21,24 @@
     </thead>
     <tbody>
       <tr>
-        <td class="col-xs-1 text-center">Alerter au premier passage</td>
-        <td class="col-md-1 text-center">
+        <td class="col-xs-1" width="90%">Alerter au premier passage</td>
+        <td class="col-md-1" width="10%">
           <a (click)="switchActiveFirstPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_first_pass ? 'success' : 'default' }} btn-sm">
             <span class="glyphicon {{ currentAlertRug.is_active_first_pass ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
           </a>
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1 text-center">Alerter au deuxieme passage</td>
-        <td class="col-md-1 text-center">
+        <td class="col-xs-1" width="90%">Alerter au deuxieme passage</td>
+        <td class="col-md-1" width="10%">
           <a (click)="switchActiveSecondPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_second_pass ? 'success' : 'default' }} btn-sm">
             <span class="glyphicon {{ currentAlertRug.is_active_second_pass ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
           </a>
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1 text-center">Activer le son</td>
-        <td class="col-md-1 text-center">
+        <td class="col-xs-1" width="90%">Activer le son</td>
+        <td class="col-md-1" width="10%">
           <a (click)="switchActivePlaybackAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_playback_active ? 'success' : 'default' }} btn-sm">
             <span class="glyphicon {{ currentAlertRug.is_playback_active ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
           </a>

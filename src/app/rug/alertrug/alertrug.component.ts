@@ -20,7 +20,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 export class AlertrugComponent implements OnInit, OnDestroy {
   currentAlertRug: AlertRug = new AlertRug();  
   clock: Date;
-  clockString: string;
+  RugState: string;
   active_mp3playbacks: any[];
   active_alarms: AlarmClock[];
   all_mp3playbacks: any[];
@@ -55,7 +55,7 @@ export class AlertrugComponent implements OnInit, OnDestroy {
     // get the list of activated Alarm
     this.alarmClockService.getAllAlarmClocks().subscribe(this.setActiveAlarmClocks.bind(this));
 
- //   this.setsock();
+    this.setsock();
   }
 
 
@@ -69,6 +69,16 @@ export class AlertrugComponent implements OnInit, OnDestroy {
     this.socket.onmessage = (event) => {
       //  var data = JSON.parse(event.data);
       console.log("data from socket:" + event.data);
+      var NumEvent = +event.data;
+      if (NumEvent>150) {
+         console.log("NumEvent superior to 150");
+         this.RugState = "Tapis pressé";
+      }
+      else
+      {
+         this.RugState = "Rien sur le tapis";
+      }
+      this.RugState = event.data;
       this.title = event.data;
     };
 
@@ -95,8 +105,8 @@ export class AlertrugComponent implements OnInit, OnDestroy {
   }
 
   incrementDate() {
-    this.clock.setSeconds(this.clock.getSeconds() + 1)
-    this.clockString = "111111111"; 
+    //this.clock.setSeconds(this.clock.getSeconds() + 1)
+    //this.clockString = "111111111"; 
     //DateFormatter.format(this.clock, 'en', 'EEEE, MMMM d, y H:mm:ss');
   }
 

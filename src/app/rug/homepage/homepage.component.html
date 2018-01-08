@@ -1,8 +1,8 @@
 <h3>
   Rpi date</h3>
-<!--  
-<div class="well"><strong>{{ clockString }}</strong></div>
--->
+
+<!-- <div class="well"><strong>{{ clockString }}</strong></div>
+ -->
 <!--<div ng-app="myApp" ng-controller="myCtrl">
 
 <select ng-model="selectedName" ng-options="x for x in names">
@@ -54,9 +54,7 @@ app.controller('myCtrl', function($scope) {
 <div class="well" *ngFor="let active_mp3playback of active_mp3playbacks">{{active_mp3playback.name}}</div>
 
 <div *ngIf="playerLoaded">
-  <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'on' ? 'warning' : 'default' }} btn-lg btn-block">Start</button>
+  <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'on' ? 'success' : 'default' }} btn-lg btn-block">Start</button>
   <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'off' ? 'danger' : 'default' }} btn-lg btn-block">Stop</button>
-  <button (click)="start1()">Start</button>
-  <button (click)="stop1()">Stop</button>  
 </div>
 
