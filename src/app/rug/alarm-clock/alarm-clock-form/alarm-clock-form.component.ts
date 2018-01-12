@@ -50,6 +50,7 @@ export class AlarmClockFormComponent implements OnInit {
           this.existingAlarmClock = false;
           this.timePicker= new Date();
           this.newAlarmClock.auto_stop_seconds = 0;
+          this.newAlarmClock.stop_seconds_hit_rug = 0;
           return
         } else {
           console.log("get an id");
@@ -57,7 +58,7 @@ export class AlarmClockFormComponent implements OnInit {
           this.alarmClockService.getAlarmClockById(alarmClockId).subscribe(
             this.setExistingAlarmClock.bind(this),
             error => console.error('Error: ' + error),
-            () => console.log('Completed! Get an alarm ' + this.newAlarmClock.mp3playback));
+            () => console.log('Completed! Get an alarm ' + this.newAlarmClock.mp3_playback));
         }
       });
 
@@ -71,6 +72,7 @@ export class AlarmClockFormComponent implements OnInit {
       // get hours and minutes for the date picker. the backend want integer for each
       this.newAlarmClock.hour = this.timePicker.getHours();
       this.newAlarmClock.minute = this.timePicker.getMinutes();
+      console.log("Alarm clock already exist, updating it with val" + this.newAlarmClock);
       if (this.dayOfWeekChecked()){
         console.log("Alarm clock already exist, updating it with val" + this.newAlarmClock);
         this.alarmClockService.updateAlarmClockById(this.newAlarmClock.id, this.newAlarmClock).subscribe(

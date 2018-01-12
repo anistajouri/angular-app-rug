@@ -1,5 +1,13 @@
 <br>
 <br>
+
+<br>
+<br>
+
+<h3>Horloge</h3>
+<div class="well"><strong>{{ clock | date:'H:mm:ss dd MMM MM yy ' }}</strong></div>
+
+
 <a routerLink="/alarms/new" class="btn btn-success space-little">
   <span class="glyphicon glyphicon-plus"></span>
   New alarm
@@ -9,30 +17,32 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="col-xs-1 text-center">Name</th>
-        <th class="col-xs-1 text-center">Day of week</th>
-        <th class="col-xs-1 text-center">Time</th>
-        <th class="col-xs-1 text-center">Autostop</th>
-        <th class="col-xs-1 text-center">Edit</th>
-        <th class="col-xs-1 text-center">Active</th>
-        <th class="col-xs-1 text-center">Delete</th>
+        <th class="col-xs-1 text-center">Tache</th>
+        <th class="col-xs-1 text-center">Jours</th>
+        <th class="col-xs-1 text-center">Temps</th>
+        <th class="col-xs-1 text-center">Auto stop</th>
+        <th class="col-xs-1 text-center">stop tapis temps</th>
+        <th class="col-xs-1 text-center">Editer</th>
+        <th class="col-xs-1 text-center">Activer</th>
+        <th class="col-xs-1 text-center">Supprimer</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let alarmclock of alarmclocks">
           <td class="col-md-1 text-center">{{alarmclock.name}}</td>
           <td class="col-md-2 text-center">
-            <div class="col-xs-1"><span class="text-{{ alarmclock.monday ? 'success' : 'muted' }}">Lu</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.tuesday ? 'success' : 'muted' }}">Ma</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.wednesday ? 'success' : 'muted' }}">Me</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.thursday ? 'success' : 'muted' }}">Je</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.friday ? 'success' : 'muted' }}">Ve</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.saturday ? 'success' : 'muted' }}">Sa</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'success' : 'muted' }}">Di</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.monday ? 'success' : 'muted' }}">L</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.tuesday ? 'success' : 'muted' }}">M</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.wednesday ? 'success' : 'muted' }}">M</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.thursday ? 'success' : 'muted' }}">J</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.friday ? 'success' : 'muted' }}">V</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.saturday ? 'success' : 'muted' }}">S</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'success' : 'muted' }}">D</span></div>
 
           </td>
           <td class="col-md-1 text-center">{{ alarmclock.hour < 10 ? '0' : '' }}{{alarmclock.hour}}:{{ alarmclock.minute < 10 ? '0' : '' }}{{alarmclock.minute}}</td>
-          <td class="col-md-1 text-center">{{alarmclock.auto_stop_minutes}}</td>
+          <td class="col-md-1 text-center">{{alarmclock.auto_stop_seconds}}</td>
+          <td class="col-md-1 text-center">{{alarmclock.stop_seconds_hit_rug}}</td>          
           <td class="col-md-1 text-center">
             <a [routerLink]="['/alarms', alarmclock.id]" type="button" class="btn btn-default btn-sm">
               <span class="glyphicon glyphicon-edit"></span>

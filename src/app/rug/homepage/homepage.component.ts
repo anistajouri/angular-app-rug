@@ -17,14 +17,11 @@ import { Observable, Subscription } from 'rxjs/Rx';
   styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit, OnDestroy {
-  clock: Date;
   clockString: string;
   StateRug: string;
   active_mp3playbacks: any[];
   active_alarms: AlarmClock[];
   all_mp3playbacks: any[];
-  systemDateSubscribption: Subscription;
-  clockIncrementSubscription: Subscription;
   player: Player;
   playerLoaded: boolean = false;
 
@@ -42,8 +39,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // get the backend server time and date
-    this.systemDateSubscribption = this.systemDateService.getSystemDate().subscribe(this.setClockCallback.bind(this));
     // get the active mp3 playback
     this.mp3PlaybackService.getAllMP3Playbacks()
       .subscribe(this.filterDefaultMP3Playback.bind(this));
@@ -54,27 +49,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
 
   }
 
-  // subcribe return the target object
-  setClockCallback(date: Date) {
-    this.clock = date;
-    this.clockIncrementSubscription = Observable
-      .interval(1000)
-      .subscribe(this.incrementDate.bind(this));
-
-  }
-
-  incrementDate() {
-    this.clock.setSeconds(this.clock.getSeconds() + 1)
-    //this.StateRug
-    //this.clockString = "111111111"; 
-    //DateFormatter.format(this.clock, 'en', 'EEEE, MMMM d, y H:mm:ss');
-  }
-
   ngOnDestroy() {
-    this.systemDateSubscribption.unsubscribe();
-    if (this.clockIncrementSubscription) {
-      this.clockIncrementSubscription.unsubscribe();
-    }
 
   }
 

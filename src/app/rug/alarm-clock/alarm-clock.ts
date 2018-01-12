@@ -16,7 +16,7 @@ export class AlarmClock {
     auto_stop_seconds: number;
     stop_seconds_hit_rug: number;
     is_active: boolean = false;
-    mp3playback: MP3Playback;
+    mp3_playback: MP3Playback;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

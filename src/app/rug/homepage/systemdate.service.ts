@@ -13,7 +13,7 @@ export class SystemDateService {
 
     constructor(private httpService: Http) {}
 
-    // GET /alarmclocks
+    // GET /systemdate
     getSystemDate(): Observable < Date > {
         var datejsonObservable = this.httpService.get(this.baseUrl + "/systemdate/");
         return this.dateJson(datejsonObservable);

@@ -14,7 +14,7 @@ export class AlarmClockService {
   // GET /alarmclocks
   getAllAlarmClocks(): Observable <AlarmClock[]> {
     var alarmClocks = this.httpService.get(this.baseUrl + "/alarms/")      
-      .map((res: Response) => res.json())    
+      .map((res: Response) => res.json())
     return alarmClocks;
   }
 
@@ -27,7 +27,8 @@ export class AlarmClockService {
 
   // POST /alarms/new
   addAlarmClock(alarmClock: AlarmClock): Observable <AlarmClock> {
-    let body = JSON.stringify(alarmClock); // Stringify payload
+    let body = JSON.stringify(alarmClock); // Stringify 
+    console.log("ALARM A:"+body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
