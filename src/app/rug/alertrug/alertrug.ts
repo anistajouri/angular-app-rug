@@ -7,10 +7,8 @@ export class AlertRug {
     is_active_first_pass: boolean = false;
     is_active_second_pass: boolean = false;
     is_playback_active: boolean = false;
-    alert_duration_Seconds: number;
-    auto_stop_seconds: number;
     stop_seconds_hit_rug: number;
-    mp3playback: MP3Playback;
+    mp3_playback: MP3Playback;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

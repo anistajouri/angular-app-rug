@@ -1,13 +1,9 @@
 import { AlarmClock } from '../alarm-clock/alarm-clock';
 import { AlertRug } from './alertrug';
-import { AlarmClockService } from './../alarm-clock/alarm-clock.service';
+import { AlertRugService } from './../alertrug/alertrug.service';
 //import { DateFormatter } from '@angular/common/src/pipes/intl';
-import { Player } from './../player/player';
-import { PlayerService } from '../player/player.service';
 import { MP3Playback } from './../mp3-playback/mp3-playback';
-import { SystemDateService } from '../homepage/systemdate.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {SystemDate} from '../../system-date';
 import { MP3PlaybackService } from '../mp3-playback/mp3-playback.service';
 import { Observable, Subscription } from 'rxjs/Rx';
 
@@ -17,45 +13,30 @@ import { Observable, Subscription } from 'rxjs/Rx';
   templateUrl: './alertrug.component.html',
   styleUrls: ['./alertrug.component.css']
 })
-export class AlertrugComponent implements OnInit, OnDestroy {
+export class AlertRugComponent implements OnInit, OnDestroy {
   currentAlertRug: AlertRug = new AlertRug();  
   clock: Date;
-  RugState: string;
-  active_mp3playbacks: any[];
-  active_alarms: AlarmClock[];
   all_mp3playbacks: any[];
-  systemDateSubscribption: Subscription;
-  clockIncrementSubscription: Subscription;
-  player: Player;
-  playerLoaded: boolean = false;
-
+  active_mp3playbacks: any[];
 
   title = 'app';
   URL = 'ws://localhost:8000/stocks';
   socket:WebSocket;
 
   constructor(private mp3PlaybackService: MP3PlaybackService,
-    private systemDateService: SystemDateService,
-    private playerService: PlayerService,
-    private alarmClockService: AlarmClockService) {
+    private alertRugService: AlertRugService) {
 
 
   }
 
-
-
   ngOnInit() {
-    // get the backend server time and date
-    this.systemDateSubscribption = this.systemDateService.getSystemDate().subscribe(this.setClockCallback.bind(this));
-    // get the active web radio
+    // get the activated Rug
+    this.alertRugService.getAlertRugById(1).subscribe(this.setAlertRug.bind(this));
+    // get the active mp3 playback
     this.mp3PlaybackService.getAllMP3Playbacks()
-      .subscribe(this.filterDefaultMP3Playback.bind(this));
-    // get the player status
-    this.playerService.getPlayerStatus().subscribe(this.setPlayerStatus.bind(this));
-    // get the list of activated Alarm
-    this.alarmClockService.getAllAlarmClocks().subscribe(this.setActiveAlarmClocks.bind(this));
+      .subscribe(this.setActiveMP3Playback.bind(this));
 
-    this.setsock();
+ //   this.setsock();
   }
 
 
@@ -69,16 +50,6 @@ export class AlertrugComponent implements OnInit, OnDestroy {
     this.socket.onmessage = (event) => {
       //  var data = JSON.parse(event.data);
       console.log("data from socket:" + event.data);
-      var NumEvent = +event.data;
-      if (NumEvent>150) {
-         console.log("NumEvent superior to 150");
-         this.RugState = "Tapis pressé";
-      }
-      else
-      {
-         this.RugState = "Rien sur le tapis";
-      }
-      this.RugState = event.data;
       this.title = event.data;
     };
 
@@ -95,46 +66,24 @@ export class AlertrugComponent implements OnInit, OnDestroy {
   this.socket.send('stop');
  }
 
-  // subcribe return the target object
-  setClockCallback(date: Date) {
-    this.clock = date;
-    this.clockIncrementSubscription = Observable
-      .interval(1000)
-      .subscribe(this.incrementDate.bind(this));
-
-  }
-
-  incrementDate() {
-    //this.clock.setSeconds(this.clock.getSeconds() + 1)
-    //this.clockString = "111111111"; 
-    //DateFormatter.format(this.clock, 'en', 'EEEE, MMMM d, y H:mm:ss');
-  }
 
   ngOnDestroy() {
-    this.systemDateSubscribption.unsubscribe();
-    if (this.clockIncrementSubscription) {
-      this.clockIncrementSubscription.unsubscribe();
-    }
+
 
   }
+
 
   /**
    * Filter the received list of mp3playbacks to keep only the active one (is_default)
    */
-  filterDefaultMP3Playback(mp3playbacks: MP3Playback[]) {
+  setActiveMP3Playback(mp3playbacks: MP3Playback[]) {
+//    this.active_mp3playbacks = mp3playbacks;
     this.all_mp3playbacks = mp3playbacks;
-    console.log(mp3playbacks);
+    console.log(this.currentAlertRug.id);
     this.active_mp3playbacks = this.all_mp3playbacks.filter(
-      mp3playback => mp3playback.is_default === true
+      mp3playback => mp3playback.id === this.currentAlertRug.mp3_playback
     )
   }
-
-  setPlayerStatus(player: Player){
-    console.log("Player: " + player);
-    this.player = player;
-    this.playerLoaded = true;
-  }
-
 
   switchActiveFirstPassAlert(alertrug: AlertRug){
     if (alertrug.is_active_first_pass){
@@ -143,13 +92,13 @@ export class AlertrugComponent implements OnInit, OnDestroy {
        alertrug.is_active_first_pass = true
     }
     // update the AlertRug
-/*    this.alarmClockService.updateAlarmClockById(alarmclock.id, alarmclock).subscribe(
+    this.alertRugService.updateAlertRugById(1, alertrug).subscribe(
         success => {          
-          this.refreshAlarmClockList();
+          this.alertRugService.getAlertRugById(1).subscribe(this.setAlertRug.bind(this));
         },
         error => console.log("Error "+ error)
       );
-*/
+
 
   }
 
@@ -170,19 +119,8 @@ export class AlertrugComponent implements OnInit, OnDestroy {
     }
   }
 
-  /*
-    alert_duration_Seconds: number;
-    auto_stop_seconds: number;
-    stop_seconds_hit_rug: number;
-   */
-
-
-
-  setActiveAlarmClocks(alarmclocks: AlarmClock[]){
-    this.active_alarms = alarmclocks.filter(
-      alarms => alarms.is_active === true
-    )
-
+  setAlertRug(alertrug: AlertRug){
+    this.currentAlertRug = alertrug;
   }
 
 }

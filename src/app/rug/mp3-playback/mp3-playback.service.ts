@@ -14,7 +14,8 @@ export class MP3PlaybackService {
   // GET /mp3playbacks
   getAllMP3Playbacks(): Observable < MP3Playback[] > {    
     var mp3Playbacks = this.httpService.get(this.baseUrl + "/mp3playback/")      
-      .map((res: Response) => res.json())    
+      .map((res: Response) => res.json())
+    console.log("hhhh:"+JSON.stringify(mp3Playbacks));
     return mp3Playbacks;
   }
 

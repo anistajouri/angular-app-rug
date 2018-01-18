@@ -5,12 +5,12 @@
 <br>
 
 <h3>Horloge</h3>
-<div class="well"><strong>{{ clock | date:'H:mm:ss dd MMM MM yy ' }}</strong></div>
+<div class="well"><strong>{{ clock | date:'H:mm (dd MMM yyyy) ' }}</strong></div>
 
 
-<a routerLink="/alarms/new" class="btn btn-success space-little">
+<a routerLink="/alarms/new" class="btn btn-warning space-little">
   <span class="glyphicon glyphicon-plus"></span>
-  New alarm
+  Nouvel réveil
 </a>
 <br><br>
 <div class="table-responsive">
@@ -19,6 +19,7 @@
       <tr>
         <th class="col-xs-1 text-center">Tache</th>
         <th class="col-xs-1 text-center">Jours</th>
+        <th class="col-xs-1 text-center">mp3</th>
         <th class="col-xs-1 text-center">Temps</th>
         <th class="col-xs-1 text-center">Auto stop</th>
         <th class="col-xs-1 text-center">stop tapis temps</th>
@@ -31,15 +32,16 @@
         <tr *ngFor="let alarmclock of alarmclocks">
           <td class="col-md-1 text-center">{{alarmclock.name}}</td>
           <td class="col-md-2 text-center">
-            <div class="col-xs-1"><span class="text-{{ alarmclock.monday ? 'success' : 'muted' }}">L</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.tuesday ? 'success' : 'muted' }}">M</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.wednesday ? 'success' : 'muted' }}">M</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.thursday ? 'success' : 'muted' }}">J</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.friday ? 'success' : 'muted' }}">V</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.saturday ? 'success' : 'muted' }}">S</span></div>
-            <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'success' : 'muted' }}">D</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.monday ? 'warning' : 'muted' }}">L</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.tuesday ? 'warning' : 'muted' }}">M</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.wednesday ? 'warning' : 'muted' }}">M</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.thursday ? 'warning' : 'muted' }}">J</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.friday ? 'warning' : 'muted' }}">V</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.saturday ? 'warning' : 'muted' }}">S</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'warning' : 'muted' }}">D</span></div>
 
           </td>
+          <td class="col-md-1 text-center">{{alarmclock.mp3_playback}}</td>          
           <td class="col-md-1 text-center">{{ alarmclock.hour < 10 ? '0' : '' }}{{alarmclock.hour}}:{{ alarmclock.minute < 10 ? '0' : '' }}{{alarmclock.minute}}</td>
           <td class="col-md-1 text-center">{{alarmclock.auto_stop_seconds}}</td>
           <td class="col-md-1 text-center">{{alarmclock.stop_seconds_hit_rug}}</td>          
@@ -49,7 +51,7 @@
             </a>
           </td>
           <td class="col-md-1 text-center">
-            <a (click)="switchActiveAlarmClock(alarmclock)" type="button" class="btn btn-{{ alarmclock.is_active ? 'success' : 'default' }} btn-sm">
+            <a (click)="switchActiveAlarmClock(alarmclock)" type="button" class="btn btn-{{ alarmclock.is_active ? 'warning' : 'default' }} btn-sm">
               <span class="glyphicon {{ alarmclock.is_active ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
             </a>
           </td>

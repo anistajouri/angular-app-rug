@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "dark-bootstrap.css",      
+        "cyborg-bootstrap.css",      
         "styles.css"
       ],
       "scripts": [],

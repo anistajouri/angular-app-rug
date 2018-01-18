@@ -84,7 +84,7 @@ export class OptionComponent implements OnInit {
    * The data contains a full path, the method will only keep the file name
    */
   setBackup(backup: Backup[]) {
-    console.log("Recevied backup: ");
+    console.log("Received backup: ");
     console.log(backup);
     if (typeof backup !== 'undefined' && backup.length > 0) {
       // the array is defined and has at least one element

@@ -4,8 +4,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CommonModule } from '@angular/common';
 import { HomepageService } from './homepage.service';
 import { HomepageComponent } from './homepage/homepage.component';
-import { AlertrugService } from './alertrug.service';
-import { AlertrugComponent } from './alertrug/alertrug.component';
+import { AlertRugComponent } from './alertrug/alertrug.component';
 
 import { SystemdateService } from './systemdate.service';
 import { AlarmClockComponent } from './alarm-clock/alarm-clock.component';
@@ -24,6 +23,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { RugDialogComponent } from './rug-dialog/rug-dialog.component';
 import { PopupComponent } from './popup/popup.component';
 import { AlarmClockFormComponent } from './alarm-clock/alarm-clock-form/alarm-clock-form.component';
+import { AlertRugFormComponent } from './alertrug/alertrug-form/alertrug-form.component';
+
 import { ConfirmDeleteModalComponent } from './confirm-delete-modal/confirm-delete-modal.component';
 import { MP3PlaybacksComponent } from './mp3-playback/mp3-playbacks.component';
 import { MP3PlaybackFormComponent } from './mp3-playback/mp3-playback-form/mp3-playback-form.component';
@@ -36,14 +37,17 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { MP3PlaybackService } from './mp3-playback/mp3-playback.service';
 import { SystemDateService } from './homepage/systemdate.service';
-import {AlarmClockService} from "./alarm-clock/alarm-clock.service";
+import { AlarmClockService } from "./alarm-clock/alarm-clock.service";
+import { AlertRugService } from "./alertrug/alertrug.service";
+
 
 
 @NgModule({
 declarations: [
     MP3PlaybacksComponent,
     HomepageComponent,
-    AlertrugComponent,
+    AlertRugComponent,
+    AlertRugFormComponent,
     AlarmClockComponent,
     MP3PlaybackFormComponent,
     AlarmClockFormComponent,
@@ -66,15 +70,11 @@ declarations: [
     RouterModule.forRoot([
       {
         path: '',
-        component: HomepageComponent
-      },
-      {
-        path: 'homepage',
-        component: HomepageComponent
+        component: AlertRugComponent
       },
       {
         path: 'alertrug',
-        component: AlertrugComponent
+        component: AlertRugComponent
       },
       {
         path: 'mp3playbacks',
@@ -102,13 +102,21 @@ declarations: [
       {
         path: 'option',
         component: OptionComponent
-      }
+      },
+      {
+        path: 'alertrug/update',
+        component: AlertRugFormComponent
+      },
+      {
+        path: 'homepage',
+        component: HomepageComponent
+      }      
     ])
   ],
   exports: [RugDialogComponent],
 //  declarations: [HomepageComponent, AlarmClockComponent, RugDialogComponent, PopupComponent, AlarmClockFormComponent, ConfirmDeleteModalComponent, MP3PlaybacksComponent, MP3PlaybackFormComponent],
 //  providers: [HomepageService, SystemdateService, AlarmClockService],
-  providers: [MP3PlaybackService, AlertrugService, AlarmClockService, SystemDateService, PlayerService, OptionService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [MP3PlaybackService, AlertRugService, AlarmClockService, SystemDateService, PlayerService, OptionService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
 
   bootstrap: [RugDialogComponent]
 })

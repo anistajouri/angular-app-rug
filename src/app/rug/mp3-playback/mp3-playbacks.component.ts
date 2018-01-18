@@ -18,8 +18,16 @@ export class MP3PlaybacksComponent implements OnInit {
   mp3PlaybackToDelete: MP3Playback;
   modalConfirmDeleteMP3PlaybackIsVisible: Boolean = false;
   message: String;
+  active_mp3playbacks: any[];
+  all_mp3playbacks: any[];
+  player: Player;
+  playerLoaded: boolean = false;
 
-  constructor(private mp3PlaybackService: MP3PlaybackService, private playerService: PlayerService, private router: Router) {}
+
+  constructor(private mp3PlaybackService: MP3PlaybackService, 
+    private playerService: PlayerService, 
+    private router: Router) {}
+
 
   ngOnInit() {
     this.refreshMP3PlaybackList();
@@ -54,6 +62,13 @@ export class MP3PlaybacksComponent implements OnInit {
   refreshMP3PlaybackList() {
     console.log("Refresh the mp3 playback list");
     this.mp3PlaybackService.getAllMP3Playbacks().subscribe(this.setMP3Playbacks.bind(this));
+  
+    // get the active mp3 playback
+    this.mp3PlaybackService.getAllMP3Playbacks().subscribe(this.filterDefaultMP3Playback.bind(this));
+    // get the player status
+    this.playerService.getPlayerStatus().subscribe(this.setPlayerStatus.bind(this));
+
+
   }
 
   playMP3Playback(mp3playback: MP3Playback) {
@@ -70,5 +85,30 @@ export class MP3PlaybacksComponent implements OnInit {
 
   }
 
+ /**
+   * Filter the received list of mp3playbacks to keep only the active one (is_default)
+   */
+  filterDefaultMP3Playback(mp3playbacks: MP3Playback[]) {
+    this.all_mp3playbacks = mp3playbacks;
+    console.log(mp3playbacks);
+    this.active_mp3playbacks = this.all_mp3playbacks.filter(
+      mp3playback => mp3playback.is_default === true
+    )
+  }
+
+  setPlayerStatus(player: Player){
+    console.log("Player: " + player);
+    this.player = player;
+    this.playerLoaded = true;
+  }
+
+  switchPlayerStatus(){
+    if (this.player.status == "on"){
+        this.player.status = "off";
+    }else{
+      this.player.status = "on";
+    }
+    this.playerService.updatePlayer(this.player).subscribe(this.setPlayerStatus.bind(this));
+  }
 
 }

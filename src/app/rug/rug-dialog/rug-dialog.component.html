@@ -1,5 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/AlertRug" style="position: absolute;top: 50%; left: 50%;" style="padding: 5px 5px"> <img src="assets\orange_sigle.png" width="40" height="40" ></a>
+
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" >
         <span class="sr-only">Toggle navigation</span>
@@ -8,14 +10,15 @@
         <span class="icon-bar"></span>
       </button>
 
-      <a class="navbar-brand" routerLink="/homepage">OrangeRug</a>
+
+      <a class="navbar-brand" routerLink="/alertrug"><b style="margin: 40px 0px" style="padding: 40px 0px"></b></a>
     </div>
     <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="navbar-collapse-main">
       <ul class="nav navbar-nav">
-        <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/alertrug">AlertRug</a></li>       
-        <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/homepage">Player</a></li>
-        <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/mp3playbacks">MP3 config</a></li>
-        <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/alarms">Alarms</a></li>
+        <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/alertrug">Tapis</a></li>       
+        <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/alarms">Réveils</a></li>
+<!--         <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/homepage">Player</a></li> -->
+        <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/mp3playbacks">Player</a></li>
         <li (click)="isCollapsed = !isCollapsed" class="nav-item" [routerLinkActive]="['active']"><a routerLink="/option">Options</a></li>       
       </ul>
     </div>

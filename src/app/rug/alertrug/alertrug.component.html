@@ -13,7 +13,8 @@
  -->
 <h3>Etat de la tapis</h3>
 <div class="well"><strong>{{ RugState }}</strong></div>
-<h3>Configuration alerte</h3>
+    
+<h3>Un seul click</h3>
 <!-- list current mp3 playback -->
 <div class="table-responsive">
   <table class="table">
@@ -21,27 +22,44 @@
     </thead>
     <tbody>
       <tr>
-        <td class="col-xs-1" width="90%">Alerter au premier passage</td>
-        <td class="col-md-1" width="10%">
-          <a (click)="switchActiveFirstPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_first_pass ? 'success' : 'default' }} btn-sm">
-            <span class="glyphicon {{ currentAlertRug.is_active_first_pass ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
+        <td class="col-xs-1" width="70%">Activer le son</td>
+        <td class="col-md-1" width="30%" align="center">
+          <a (click)="switchActiveFirstPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_first_pass ? 'warning' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_active_first_pass ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
           </a>
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1" width="90%">Alerter au deuxieme passage</td>
-        <td class="col-md-1" width="10%">
-          <a (click)="switchActiveSecondPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_second_pass ? 'success' : 'default' }} btn-sm">
-            <span class="glyphicon {{ currentAlertRug.is_active_second_pass ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
+        <td class="col-xs-1" width="70%">Activer lumiere</td>
+        <td class="col-md-1" width="30%" align="center" >
+          <a (click)="switchActiveSecondPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_second_pass ? 'warning' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_active_second_pass ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
           </a>
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1" width="90%">Activer le son</td>
-        <td class="col-md-1" width="10%">
-          <a (click)="switchActivePlaybackAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_playback_active ? 'success' : 'default' }} btn-sm">
-            <span class="glyphicon {{ currentAlertRug.is_playback_active ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
+        <td class="col-xs-1" width="70%">Activer le son</td>
+        <td class="col-md-1" width="30%" align="center">
+          <a (click)="switchActivePlaybackAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_playback_active ? 'warning' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_playback_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
           </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-xs-1" width="70%">Arrêter le son apres une durée (seconds)</td>
+        <td class="col-md-1" width="30%" align="center">
+          <a routerLink="/alertrug/update" class="btn btn-default ">
+            {{ currentAlertRug.stop_seconds_hit_rug }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-xs-1" width="70%">mp3</td>
+        <td class="col-md-1" width="30%"   align="center" >
+          <a routerLink="/alertrug/update" class="btn btn-default" *ngFor="let active_mp3playback of active_mp3playbacks">
+            {{active_mp3playback.name}}
+          </a>
+      
         </td>
       </tr>
     </tbody>
@@ -49,10 +67,10 @@
 </div>
 
 
-<div *ngIf="playerLoaded">
-  <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'on' ? 'warning' : 'default' }} btn-lg btn-block">Configurer</button>
-  <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'on' ? 'success' : 'default' }} btn-lg btn-block">statistics</button>
+<div>
+
+  <button (click)="switchPlayerStatus()" type="button" class="btn btn-warning btn-lg btn-block">statistics</button>
   <button (click)="start1()">Start</button>
-  <button (click)="stop1()">Stop</button>  
+  <button (click)="stop1()">Stop</button> 
 </div>
 

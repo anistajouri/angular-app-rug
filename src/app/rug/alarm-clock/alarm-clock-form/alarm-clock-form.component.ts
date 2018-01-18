@@ -27,6 +27,7 @@ export class AlarmClockFormComponent implements OnInit {
   minute_list: number[];
   hour_list: number[];
   max_auto_stop_second: number[];
+  max_stop_seconds_hit_rug: number[];
   private subscription: Subscription;
 
   constructor(private MP3PlaybackService: MP3PlaybackService,
@@ -36,7 +37,7 @@ export class AlarmClockFormComponent implements OnInit {
     this.minute_list = this.create_range(59);
     this.hour_list = this.create_range(23);
     this.max_auto_stop_second = this.create_range(60);
-
+    this.max_stop_seconds_hit_rug = this.create_range(60);
   }
 
   ngOnInit() {

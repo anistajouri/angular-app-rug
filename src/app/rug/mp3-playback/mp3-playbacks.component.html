@@ -1,9 +1,16 @@
-<h3>MP3 playbacks</h3>
+<h3>---------</h3>
 
+<h3>Player</h3>
+<div class="well" *ngFor="let active_mp3playback of active_mp3playbacks">{{active_mp3playback.name}}</div>
 
-<a routerLink="/mp3playbacks/new" class="btn btn-success space-little">
+<div *ngIf="playerLoaded">
+  <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'on' ? 'warning' : 'default' }} btn-lg btn-block">Start</button>
+  <button (click)="switchPlayerStatus()" type="button" class="btn btn-{{ player.status == 'off' ? 'danger' : 'default' }} btn-lg btn-block">Stop</button>
+</div>
+
+<a routerLink="/mp3playbacks/new" class="btn btn-warning space-little">
     <span class="glyphicon glyphicon-plus"></span>
-    Add mp3 playback
+    Ajouter mp3
 </a>
 <br><br>
 
@@ -12,17 +19,17 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="col-xs-1 text-center">Name</th>
-        <th class="col-xs-1 text-center">Play</th>
-        <th class="col-xs-1 text-center">Edit</th>
-        <th class="col-xs-1 text-center">Delete</th>
+        <th class="col-xs-1 text-center">Nom</th>
+        <th class="col-xs-1 text-center">Jouer</th>
+        <th class="col-xs-1 text-center">Editer</th>
+        <th class="col-xs-1 text-center">Supprimer</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let mp3playback of mp3playbacks">
         <td class="col-xs-1 text-center">{{mp3playback.name}}</td>
         <td class="col-xs-1 text-center">
-          <a (click)="playMP3Playback(mp3playback)" type="button" class="btn btn-success btn-sm">
+          <a (click)="playMP3Playback(mp3playback)" type="button" class="btn btn-warning btn-sm">
               <span class="glyphicon glyphicon-play"></span>
           </a>
         </td>
