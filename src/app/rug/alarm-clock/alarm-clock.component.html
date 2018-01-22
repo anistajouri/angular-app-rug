@@ -19,10 +19,10 @@
       <tr>
         <th class="col-xs-1 text-center">Tache</th>
         <th class="col-xs-1 text-center">Jours</th>
-        <th class="col-xs-1 text-center">mp3</th>
+     <!--    <th class="col-xs-1 text-center">mp3</th> -->
         <th class="col-xs-1 text-center">Temps</th>
-        <th class="col-xs-1 text-center">Auto stop</th>
-        <th class="col-xs-1 text-center">stop tapis temps</th>
+<!--         <th class="col-xs-1 text-center">Auto stop</th>
+        <th class="col-xs-1 text-center">stop tapis temps</th> -->
         <th class="col-xs-1 text-center">Editer</th>
         <th class="col-xs-1 text-center">Activer</th>
         <th class="col-xs-1 text-center">Supprimer</th>
@@ -41,11 +41,11 @@
             <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'warning' : 'muted' }}">D</span></div>
 
           </td>
-          <td class="col-md-1 text-center">{{alarmclock.mp3_playback}}</td>          
+<!--           <td class="col-md-1 text-center">{{alarmclock.mp3_playback}}</td>   -->        
           <td class="col-md-1 text-center">{{ alarmclock.hour < 10 ? '0' : '' }}{{alarmclock.hour}}:{{ alarmclock.minute < 10 ? '0' : '' }}{{alarmclock.minute}}</td>
-          <td class="col-md-1 text-center">{{alarmclock.auto_stop_seconds}}</td>
+<!--           <td class="col-md-1 text-center">{{alarmclock.auto_stop_seconds}}</td>
           <td class="col-md-1 text-center">{{alarmclock.stop_seconds_hit_rug}}</td>          
-          <td class="col-md-1 text-center">
+ -->          <td class="col-md-1 text-center">
             <a [routerLink]="['/alarms', alarmclock.id]" type="button" class="btn btn-default btn-sm">
               <span class="glyphicon glyphicon-edit"></span>
             </a>

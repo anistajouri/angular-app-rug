@@ -1,20 +1,15 @@
 <h3>------------</h3>
 
-<!-- 
-    <div class="switch">
-      <label for="alert">
-<a (click)="switchActiveAlert(currentAlertRug)" type="checkbox" >
-              <span class="slider {{ currentAlertRug.is_active ? 'enabled' : '' }}"></span>
-            </a>
-    
-     </label>
-    </div>
-
- -->
 <h3>Etat de la tapis</h3>
 <div class="well"><strong>{{ RugState }}</strong></div>
     
-<h3>Un seul click</h3>
+<!--           <td class="col-md-1 text-center">
+            <a (click)="switchActiveAlarmClock(alarmclock)" type="button" class="btn btn-{{ alarmclock.is_active ? 'warning' : 'default' }} btn-sm">
+              <span class="glyphicon {{ alarmclock.is_active ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
+            </a>
+          </td> -->
+
+<h3>Activation</h3>
 <!-- list current mp3 playback -->
 <div class="table-responsive">
   <table class="table">
@@ -22,31 +17,39 @@
     </thead>
     <tbody>
       <tr>
-        <td class="col-xs-1" width="70%">Activer le son</td>
-        <td class="col-md-1" width="30%" align="center">
-          <a (click)="switchActiveFirstPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_first_pass ? 'warning' : 'default' }} btn-sm">
-            <span class="glyphicon {{ currentAlertRug.is_active_first_pass ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
-          </a>
-        </td>
-      </tr>
-      <tr>
         <td class="col-xs-1" width="70%">Activer lumiere</td>
-        <td class="col-md-1" width="30%" align="center" >
-          <a (click)="switchActiveSecondPassAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_active_second_pass ? 'warning' : 'default' }} btn-sm">
-            <span class="glyphicon {{ currentAlertRug.is_active_second_pass ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td class="col-xs-1" width="70%">Activer le son</td>
         <td class="col-md-1" width="30%" align="center">
-          <a (click)="switchActivePlaybackAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_playback_active ? 'warning' : 'default' }} btn-sm">
-            <span class="glyphicon {{ currentAlertRug.is_playback_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
+          <a (click)="switchActiveLight(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_light_active ? 'warning' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_light_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
           </a>
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1" width="70%">Arrêter le son apres une durée (seconds)</td>
+        <td class="col-xs-1" width="70%">Activer l'audio</td>
+        <td class="col-md-1" width="30%" align="center" >
+          <a (click)="switchActiveAudio(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_audio_active ? 'warning' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_audio_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-xs-1" width="70%">Envoyer photo par email</td>
+        <td class="col-md-1" width="30%" align="center">
+          <a (click)="switchActiveCamera(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_camera_active ? 'warning' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_camera_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-xs-1" width="70%">Alerter par message (cloud messaging)</td>
+        <td class="col-md-1" width="30%" align="center">
+          <a (click)="switchActiveMessageAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_message_active ? 'warning' : 'default' }} btn-sm">
+            <span class="glyphicon {{ currentAlertRug.is_message_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td class="col-xs-1" width="70%">Arrêter l'audio' apres une durée (en secondes)</td>
         <td class="col-md-1" width="30%" align="center">
           <a routerLink="/alertrug/update" class="btn btn-default ">
             {{ currentAlertRug.stop_seconds_hit_rug }}

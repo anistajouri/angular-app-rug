@@ -27,7 +27,7 @@ export class AlertRugService {
 
   updateAlertRugById(id: number, values: Object = {}): Observable <AlertRug> {        
     let body = JSON.stringify(values); // Stringify payload
-    console.log("alertrug body:", body);
+    console.log("-alertrug body:", body);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });

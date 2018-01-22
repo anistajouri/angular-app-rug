@@ -14,7 +14,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
   styleUrls: ['./alertrug.component.css']
 })
 export class AlertRugComponent implements OnInit, OnDestroy {
-  currentAlertRug: AlertRug = new AlertRug();  
+  currentAlertRug: AlertRug = new AlertRug();
   clock: Date;
   all_mp3playbacks: any[];
   active_mp3playbacks: any[];
@@ -36,7 +36,7 @@ export class AlertRugComponent implements OnInit, OnDestroy {
     this.mp3PlaybackService.getAllMP3Playbacks()
       .subscribe(this.setActiveMP3Playback.bind(this));
 
- //   this.setsock();
+    this.setsock();
   }
 
 
@@ -85,11 +85,11 @@ export class AlertRugComponent implements OnInit, OnDestroy {
     )
   }
 
-  switchActiveFirstPassAlert(alertrug: AlertRug){
-    if (alertrug.is_active_first_pass){
-      alertrug.is_active_first_pass = false
+  switchActiveLight(alertrug: AlertRug){
+    if (alertrug.is_light_active){
+      alertrug.is_light_active = false
     }else{
-       alertrug.is_active_first_pass = true
+       alertrug.is_light_active = true
     }
     // update the AlertRug
     this.alertRugService.updateAlertRugById(1, alertrug).subscribe(
@@ -98,25 +98,52 @@ export class AlertRugComponent implements OnInit, OnDestroy {
         },
         error => console.log("Error "+ error)
       );
-
-
   }
 
-  switchActiveSecondPassAlert(alertrug: AlertRug){
-    if (alertrug.is_active_second_pass){
-      alertrug.is_active_second_pass = false
+  switchActiveAudio(alertrug: AlertRug){
+    if (alertrug.is_audio_active){
+      alertrug.is_audio_active = false
     }else{
-       alertrug.is_active_second_pass = true
+       alertrug.is_audio_active = true
     }
+    // update the AlertRug
+    this.alertRugService.updateAlertRugById(1, alertrug).subscribe(
+        success => {          
+          this.alertRugService.getAlertRugById(1).subscribe(this.setAlertRug.bind(this));
+        },
+        error => console.log("Error "+ error)
+      );
+  }
+
+  switchActiveCamera(alertrug: AlertRug){
+    if (alertrug.is_camera_active){
+      alertrug.is_camera_active = false
+    }else{
+       alertrug.is_camera_active = true
+    }
+    // update the AlertRug
+    this.alertRugService.updateAlertRugById(1, alertrug).subscribe(
+        success => {          
+          this.alertRugService.getAlertRugById(1).subscribe(this.setAlertRug.bind(this));
+        },
+        error => console.log("Error "+ error)
+      );
   }
 
 
-  switchActivePlaybackAlert(alertrug: AlertRug){
-    if (alertrug.is_playback_active){
-      alertrug.is_playback_active = false
+  switchActiveMessageAlert(alertrug: AlertRug){
+    if (alertrug.is_message_active){
+      alertrug.is_message_active = false
     }else{
-       alertrug.is_playback_active = true
+       alertrug.is_message_active = true
     }
+    // update the AlertRug
+    this.alertRugService.updateAlertRugById(1, alertrug).subscribe(
+        success => {          
+          this.alertRugService.getAlertRugById(1).subscribe(this.setAlertRug.bind(this));
+        },
+        error => console.log("Error "+ error)
+      );
   }
 
   setAlertRug(alertrug: AlertRug){

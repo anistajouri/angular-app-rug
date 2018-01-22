@@ -4,9 +4,10 @@ import { AlarmClock } from '../alarm-clock/alarm-clock';
 
 export class AlertRug {
     id: number;
-    is_active_first_pass: boolean = false;
-    is_active_second_pass: boolean = false;
-    is_playback_active: boolean = false;
+    is_light_active: boolean = false;
+    is_audio_active: boolean = false;
+    is_camera_active: boolean =  false;
+    is_message_active: boolean = false;
     stop_seconds_hit_rug: number;
     mp3_playback: MP3Playback;
 
