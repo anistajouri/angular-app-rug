@@ -5,7 +5,9 @@
 <br>
 
 <h3>Horloge</h3>
-<div class="well"><strong>{{ clock | date:'H:mm (dd MMM yyyy) ' }}</strong></div>
+
+<!-- {{ clock | date:'H:mm (dd MMM yyyy) ' }} -->
+<div class="well"><strong> {{ clockString }}</strong></div>
 
 
 <a routerLink="/alarms/new" class="btn btn-warning space-little">

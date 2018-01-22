@@ -102,6 +102,7 @@ export class AlarmClockComponent implements OnInit {
   // subcribe return the target object
   setClockCallback(date: Date) {
     this.clock = date;
+    //this.clock.setHours(this.clock.getHours()-1);
     this.clockIncrementSubscription = Observable
       .interval(1000)
       .subscribe(this.incrementDate.bind(this));
@@ -110,6 +111,7 @@ export class AlarmClockComponent implements OnInit {
 
   incrementDate() {
     this.clock.setSeconds(this.clock.getSeconds() + 1)
+    this.clockString = this.clock.toLocaleString();
   }
 
 
