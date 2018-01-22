@@ -16,6 +16,7 @@ import { Observable, Subscription } from 'rxjs/Rx';
 export class AlertRugComponent implements OnInit, OnDestroy {
   currentAlertRug: AlertRug = new AlertRug();
   clock: Date;
+  RugState: string;
   all_mp3playbacks: any[];
   active_mp3playbacks: any[];
 
@@ -49,8 +50,8 @@ export class AlertRugComponent implements OnInit, OnDestroy {
 
     this.socket.onmessage = (event) => {
       //  var data = JSON.parse(event.data);
-      console.log("data from socket:" + event.data);
-      this.title = event.data;
+      console.log("state:" + event.data);
+      this.RugState = event.data;
     };
 
     if (this.socket.readyState == WebSocket.OPEN) {

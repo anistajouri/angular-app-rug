@@ -78,7 +78,7 @@ export class MP3PlaybacksComponent implements OnInit {
     player.mp3_playback = mp3playback.id;
     this.playerService.updatePlayer(player).subscribe(
         success => {          
-          this.router.navigate(["homepage"]);
+          this.router.navigate(["mp3playbacks"]);
         },
         error => console.log("Error "+ error)
       );

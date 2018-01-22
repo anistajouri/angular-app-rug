@@ -23,6 +23,7 @@ export class PlayerService {
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
+    console.log("body:"+body);
     var returnedPlayer = this.httpService.post(this.baseUrl + "/player/", body, {
         headers: headers
       })
