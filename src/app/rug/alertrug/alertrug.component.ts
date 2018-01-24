@@ -57,6 +57,7 @@ export class AlertRugComponent implements OnInit, OnDestroy {
     if (this.socket.readyState == WebSocket.OPEN) {
       this.socket.onopen(null);
     }
+    this.socket.send('start');    
   }
 
  start1() {
