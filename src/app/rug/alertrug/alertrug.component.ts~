@@ -43,8 +43,7 @@ export class AlertRugComponent implements OnInit, OnDestroy {
 
   setsock() {
 //     this.socket = new WebSocket('ws://' + window.location.host + '/stocks/');
-//  this.socket = new WebSocket('ws://127.0.0.1:8000/stocks/');
-     this.socket = new WebSocket('ws://192.168.43.27:8000/stocks/');
+     this.socket = new WebSocket('ws://127.0.0.1:8000/stocks/');
     this.socket.onopen = () => {
       console.log('WebSockets connection created.');
     };

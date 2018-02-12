@@ -1,6 +1,6 @@
 <h3>------------</h3>
 
-<h3>Etat de la tapis</h3>
+<h3>Etat du tapis</h3>
 <div class="well"><strong>{{ RugState }}</strong></div>
     
 <!--           <td class="col-md-1 text-center">
@@ -17,7 +17,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="col-xs-1" width="70%">Activer lumiere</td>
+        <td class="col-xs-1" width="70%">Activer la lumiere</td>
         <td class="col-md-1" width="30%" align="center">
           <a (click)="switchActiveLight(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_light_active ? 'warning' : 'default' }} btn-sm">
             <span class="glyphicon {{ currentAlertRug.is_light_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
@@ -33,7 +33,7 @@
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1" width="70%">Envoyer photo par email</td>
+        <td class="col-xs-1" width="70%">Capturer photo</td>
         <td class="col-md-1" width="30%" align="center">
           <a (click)="switchActiveCamera(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_camera_active ? 'warning' : 'default' }} btn-sm">
             <span class="glyphicon {{ currentAlertRug.is_camera_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
@@ -41,7 +41,7 @@
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1" width="70%">Alerter par message (cloud messaging)</td>
+        <td class="col-xs-1" width="70%">Notifier par message (FCM)</td>
         <td class="col-md-1" width="30%" align="center">
           <a (click)="switchActiveMessageAlert(currentAlertRug)" type="button" class="btn btn-{{ currentAlertRug.is_message_active ? 'warning' : 'default' }} btn-sm">
             <span class="glyphicon {{ currentAlertRug.is_message_active ? 'glyphicon-ok' : 'glyphicon-minus' }}"></span>
@@ -49,7 +49,7 @@
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1" width="70%">Arrêter l'audio' apres une durée (en secondes)</td>
+        <td class="col-xs-1" width="70%">Configurer Timer (sec)</td>
         <td class="col-md-1" width="30%" align="center">
           <a routerLink="/alertrug/update" class="btn btn-default ">
             {{ currentAlertRug.stop_seconds_hit_rug }}
@@ -57,7 +57,7 @@
         </td>
       </tr>
       <tr>
-        <td class="col-xs-1" width="70%">mp3</td>
+        <td class="col-xs-1" width="70%">Sélectionner mp3</td>
         <td class="col-md-1" width="30%"   align="center" >
           <a routerLink="/alertrug/update" class="btn btn-default" *ngFor="let active_mp3playback of active_mp3playbacks">
             {{active_mp3playback.name}}
@@ -72,7 +72,7 @@
 
 <div>
 
-  <button (click)="switchPlayerStatus()" type="button" class="btn btn-warning btn-lg btn-block">statistics</button>
+  <button (click)="stop1()" type="button" class="btn btn-warning btn-lg btn-block">statistics</button>
   <!-- <button (click)="start1()">Start</button>
   <button (click)="stop1()">Stop</button>  -->
 </div>
